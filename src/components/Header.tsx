@@ -1,64 +1,87 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ClassLists from "./ClassLists";
 import Sidetop from "./SideTopComponents/Sidetop";
 import StudentList from "./StudentList";
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
-import {Student} from '../utils/students'
+import { Student } from '../utils/students';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../context/store';
+import { updateStudents } from '../context/action/studentSlice';
 
-export default function Header() {
-    const [students, setStudents] = React.useState<Student[]>([
-        { id: '1', name: 'Dilshod', lastname: 'Dilshodov', age: 22, male: 'male', course: 'Frontend' },
-        { id: '2', name: 'Elbek', lastname: 'Rashidov', age: 17, male: 'male', course: 'Frontend' },
-        { id: '3', name: 'Nurbek', lastname: 'Saidov', age: 30, male: 'male', course: 'Frontend' },
-    ]);
+const Header: React.FC = () => {
+  const dispatch = useDispatch();
+  const studentState = useSelector((state: RootState) => state.student);
+  const [students, setStudents] = useState<Student[]>(studentState.students);
+  const [classList, setClassList] = useState<Student[]>([]);
 
-    const [classList, setClassList] = React.useState<Student[]>([]);
-    const onDragEnd = (result: DropResult) => {
-        const { source, destination } = result;
-        if (!destination) {
-            return;
-        }
+  useEffect(() => {
+    setStudents(studentState.students);
+  }, [studentState]);
 
-        if (source.droppableId === destination.droppableId) {
-            const items = Array.from(
-                source.droppableId === 'studentList' ? students : classList
-            );
-            const [reorderedItem] = items.splice(source.index, 1);
-            items.splice(destination.index, 0, reorderedItem);
+  const onDragEnd = (result: DropResult) => {
+    const { source, destination } = result;
+    if (!destination) {
+      return;
+    }
 
-            if (source.droppableId === 'studentList') {
-                setStudents(items);
-            } else {
-                setClassList(items);
-            }
-        } else {
-            const sourceItems = Array.from(
-                source.droppableId === 'studentList' ? students : classList
-            );
-            const destinationItems = Array.from(
-                destination.droppableId === 'studentList' ? students : classList
-            );
-            const [movedItem] = sourceItems.splice(source.index, 1);
-            destinationItems.splice(destination.index, 0, movedItem);
+    let updatedStudents = [...students];
+    let updatedClassList = [...classList];
 
-            if (source.droppableId === 'studentList') {
-                setStudents(sourceItems);
-                setClassList(destinationItems);
-            } else {
-                setClassList(sourceItems);
-                setStudents(destinationItems);
-            }
-        }
-    };
-    return (
-        <div className="flex flex-col bg-slate-100 h-screen">
-            <Sidetop />
-            <DragDropContext onDragEnd={onDragEnd}>
-                <div className="flex justify-between">
-                    <ClassLists students={classList} />
-                    <StudentList students={students} />
-                </div>
-            </DragDropContext>
+    // Moving within the same list
+    if (source.droppableId === destination.droppableId) {
+      const items = Array.from(
+        source.droppableId === 'studentList' ? updatedStudents : updatedClassList
+      );
+      const [reorderedItem] = items.splice(source.index, 1);
+      items.splice(destination.index, 0, reorderedItem);
+
+      if (source.droppableId === 'studentList') {
+        updatedStudents = items;
+        setStudents(updatedStudents);
+      } else {
+        updatedClassList = items;
+        setClassList(updatedClassList);
+      }
+    } else {
+      // Moving between lists
+      const sourceItems = Array.from(
+        source.droppableId === 'studentList' ? updatedStudents : updatedClassList
+      );
+      const destinationItems = Array.from(
+        destination.droppableId === 'studentList' ? updatedStudents : updatedClassList
+      );
+
+      const [movedItem] = sourceItems.splice(source.index, 1);
+      destinationItems.splice(destination.index, 0, movedItem);
+
+      if (source.droppableId === 'studentList') {
+        updatedStudents = sourceItems;
+        updatedClassList = destinationItems;
+        setStudents(updatedStudents);
+        setClassList(updatedClassList);
+      } else {
+        updatedClassList = sourceItems;
+        updatedStudents = destinationItems;
+        setClassList(updatedClassList);
+        setStudents(updatedStudents);
+      }
+    }
+
+    // Dispatch the updated students to Redux store
+    dispatch(updateStudents(updatedStudents));
+  };
+
+  return (
+    <div className="flex flex-col bg-slate-100 h-screen">
+      <Sidetop />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="flex justify-between">
+          <ClassLists students={classList} />
+          <StudentList students={students} />
         </div>
-    );
-}
+      </DragDropContext>
+    </div>
+  );
+};
+
+export default Header;

@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@atlaskit/css-reset':
+        specifier: ^6.9.1
+        version: 6.9.1(react@18.3.1)
       '@reduxjs/toolkit':
         specifier: ^2.2.5
         version: 2.2.5(react-redux@9.1.2(@types/react@18.3.3)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
@@ -91,6 +94,32 @@ packages:
   '@ampproject/remapping@2.3.0':
     resolution: {integrity: sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw==}
     engines: {node: '>=6.0.0'}
+
+  '@atlaskit/codemod-utils@4.2.4':
+    resolution: {integrity: sha512-ETeLShTnEpLvsEhm0wmIlC7toRPy9hrMGbttdsiKzyUeGQQ3VqBxvOOPZNA6Uvi0660Jjd3lS7n5u7R/Ku0OHg==}
+
+  '@atlaskit/css-reset@6.9.1':
+    resolution: {integrity: sha512-Ul42/9TNZ69HHM5Ap+zubYIoo2a90YXVuzf0oB7LeNnIfmPwfN/1XkkzIpRhaSjTGJrd8HTdzU0iGOjIo7o5HQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ~18.2.0
+
+  '@atlaskit/ds-lib@2.3.1':
+    resolution: {integrity: sha512-DVUE3hYLhdEZy4NnsxqiCqKC5Ym3CM/DGRQlnSPcABFNL0N0FfTXso3pLpkJnMZBtEnd2pn13mPJ2VQlSISRuw==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ~18.2.0
+
+  '@atlaskit/platform-feature-flags@0.2.5':
+    resolution: {integrity: sha512-0fD2aDxn2mE59D4acUhVib+YF2HDYuuPH50aYwpQdcV/CsVkAaJsMKy8WhWSulcRFeMYp72kfIfdy0qGdRB7Uw==}
+
+  '@atlaskit/theme@12.11.0':
+    resolution: {integrity: sha512-3D1JXsnw/eyfLnEVEynapyITF01PtNeNdFuIgCcuYCx4V+kfvVDt9VxsT32uUFXbYIgZFxA8196Vwv0dyx3f7w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ~18.2.0
+
+  '@atlaskit/tokens@1.51.0':
+    resolution: {integrity: sha512-L88gFhh5Iu/oN/WfhWm8VBJLxSNAapQ4S6JaGmbWLTAoF7KGW8YH5n/SjPnck2LMBemtU9JWEcstUH6OLTsvtg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ~18.2.0
 
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
@@ -670,6 +699,9 @@ packages:
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
+
+  bind-event-listener@3.0.0:
+    resolution: {integrity: sha512-PJvH288AWQhKs2v9zyfYdPzlPqf5bXbGMmhmUIY9x4dAUGIWgomO771oBQNwJnMQSnUIXhKu6sgzpBRXTlvb8Q==}
 
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -1599,6 +1631,51 @@ snapshots:
       '@jridgewell/gen-mapping': 0.3.5
       '@jridgewell/trace-mapping': 0.3.25
 
+  '@atlaskit/codemod-utils@4.2.4':
+    dependencies:
+      '@babel/runtime': 7.24.7
+
+  '@atlaskit/css-reset@6.9.1(react@18.3.1)':
+    dependencies:
+      '@atlaskit/theme': 12.11.0(react@18.3.1)
+      '@atlaskit/tokens': 1.51.0(react@18.3.1)
+      '@babel/runtime': 7.24.7
+      react: 18.3.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@atlaskit/ds-lib@2.3.1(react@18.3.1)':
+    dependencies:
+      '@babel/runtime': 7.24.7
+      bind-event-listener: 3.0.0
+      react: 18.3.1
+
+  '@atlaskit/platform-feature-flags@0.2.5':
+    dependencies:
+      '@babel/runtime': 7.24.7
+
+  '@atlaskit/theme@12.11.0(react@18.3.1)':
+    dependencies:
+      '@atlaskit/codemod-utils': 4.2.4
+      '@atlaskit/ds-lib': 2.3.1(react@18.3.1)
+      '@atlaskit/tokens': 1.51.0(react@18.3.1)
+      '@babel/runtime': 7.24.7
+      react: 18.3.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@atlaskit/tokens@1.51.0(react@18.3.1)':
+    dependencies:
+      '@atlaskit/ds-lib': 2.3.1(react@18.3.1)
+      '@atlaskit/platform-feature-flags': 0.2.5
+      '@babel/runtime': 7.24.7
+      '@babel/traverse': 7.24.7
+      '@babel/types': 7.24.7
+      bind-event-listener: 3.0.0
+      react: 18.3.1
+    transitivePeerDependencies:
+      - supports-color
+
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
@@ -2156,6 +2233,8 @@ snapshots:
   balanced-match@1.0.2: {}
 
   binary-extensions@2.3.0: {}
+
+  bind-event-listener@3.0.0: {}
 
   brace-expansion@1.1.11:
     dependencies:

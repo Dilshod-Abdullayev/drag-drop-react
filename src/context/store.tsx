@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import classSlice from "./action/ClassAction";
-import studentSlice from './action/StudentAction'
+import studentSlice from './action/studentSlice'
 import ThemeAction from "./action/ThemeAction";
 const store = configureStore({
     reducer: {
-        classSlice: classSlice,
-        studentSlice: studentSlice,
+        class: classSlice,
+        student: studentSlice,
         theme: ThemeAction
     }
 })

@@ -1,13 +1,16 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { Student } from '../utils/students'
+import { Student } from '../utils/students';
+
 interface StudentListProps {
   students: Student[];
 }
+
 const StudentList: React.FC<StudentListProps> = ({ students }) => {
+  console.log("Rendering StudentList with students:", students); // Debugging purpose
   return (
     <Droppable droppableId="studentList">
-      {(provided: any) => (
+      {(provided) => (
         <div
           className="flex flex-col items-center mt-2 rounded-md bg-white shadow-2xl w-96 h-full"
           ref={provided.innerRef}
@@ -15,8 +18,8 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
         >
           <h1 className="text-center select-none font-semibold text-3xl">All Students</h1>
           {students.map((student, index) => (
-            <Draggable key={student.id} draggableId={student.id} index={index}>
-              {(provided: any) => (
+            <Draggable key={student.id} draggableId={String(student.id)} index={index}>
+              {(provided) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.draggableProps}
