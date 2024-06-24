@@ -7,8 +7,6 @@ interface ClassListsProps {
 }
 const ClassLists: React.FC<ClassListsProps> = ({ students }) => {
   const classes = useSelector((state: any) => state.class.classes);
-  console.log("Rendering ClassLists with students:", students);
-  console.log(classes);
   return (
     <Droppable droppableId="classList">
       {(provided) => (

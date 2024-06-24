@@ -73,7 +73,7 @@ const Header: React.FC = () => {
     <div className="flex flex-col dark:bg-slate-800 bg-slate-100 h-screen">
       <Sidetop />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex  justify-between">
+        <div className="flex flex-wrap max-md:justify-center dark:h-screen justify-between">
           <ClassLists students={classList} />
           <StudentList students={students} />
         </div>

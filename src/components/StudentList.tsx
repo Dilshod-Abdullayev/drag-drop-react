@@ -7,12 +7,11 @@ interface StudentListProps {
 }
 
 const StudentList: React.FC<StudentListProps> = ({ students }) => {
-  console.log("Rendering StudentList with students:", students); // Debugging purpose
   return (
     <Droppable droppableId="studentList">
       {(provided) => (
         <div
-          className="flex flex-col items-center mt-2 rounded-md border-4 p-2 bg-white shadow-2xl dark:bg-slate-800 w-96 h-full"
+          className="flex flex-col items-center mt-2 max-md:h-40 max-md:overflow-y-scroll  rounded-md border-4 p-2 bg-white shadow-2xl dark:bg-slate-800 w-96 h-full"
           ref={provided.innerRef}
           {...provided.droppableProps}
         >
