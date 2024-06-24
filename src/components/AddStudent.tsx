@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addStudentElement } from '../context/action/studentSlice';
-
 const AddStudent: React.FC = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState<string>('');
@@ -17,9 +16,8 @@ const AddStudent: React.FC = () => {
       setGender('male');
     }
   };
-
   return (
-    <div className="w-96 mx-auto">
+    <div className="w-96 mx-auto dark:bg-slate-800">
       <div className="mb-5">
         <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
           Student Name
@@ -34,7 +32,7 @@ const AddStudent: React.FC = () => {
         />
       </div>
       <div className="mb-5">
-        <label htmlFor="age" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        <label htmlFor="age" className="block mb-2 text-sm font-medium dark:bg-slate-800 text-gray-900 dark:text-white">
           Student Age
         </label>
         <input

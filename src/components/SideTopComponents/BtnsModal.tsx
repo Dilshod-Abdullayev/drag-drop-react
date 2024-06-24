@@ -48,9 +48,7 @@ const BtnsModal = () => {
                                         <h2 className="w-full text-2xl font-bold mb-4">Add element</h2>
                                         <p className="w-full mb-4">This is part for add element</p>
                                         <div className='flex gap-3'>
-                                            {/* Open AddStudent modal */}
                                             <ModalBtn onClick={() => openModal('student')} text={'Add Student'} />
-                                            {/* Open AddClass modal */}
                                             <ModalBtn onClick={() => openModal('class')} text={'Add Class'} />
                                         </div>
                                     </>

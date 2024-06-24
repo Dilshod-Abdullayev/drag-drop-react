@@ -66,16 +66,14 @@ const Header: React.FC = () => {
         setStudents(updatedStudents);
       }
     }
-
-    // Dispatch the updated students to Redux store
     dispatch(updateStudents(updatedStudents));
   };
 
   return (
-    <div className="flex flex-col bg-slate-100 h-screen">
+    <div className="flex flex-col dark:bg-slate-800 bg-slate-100 h-screen">
       <Sidetop />
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex justify-between">
+        <div className="flex  justify-between">
           <ClassLists students={classList} />
           <StudentList students={students} />
         </div>

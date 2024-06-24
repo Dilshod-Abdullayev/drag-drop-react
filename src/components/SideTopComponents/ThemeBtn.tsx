@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { WiMoonAltWaningCrescent2, WiMoonAltWaxingCrescent6 } from 'react-icons/wi';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../context/store'; // Adjust the import path as needed
+import { RootState, AppDispatch } from '../../context/store';
 import { handleTheme } from '../../context/action/ThemeAction';
 export default function ThemeBtn() {
   const dispatch = useDispatch<AppDispatch>();
